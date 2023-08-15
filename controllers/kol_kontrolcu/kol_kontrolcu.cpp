@@ -1,6 +1,6 @@
-// File:          skid_steer_kontrolcu.cpp
+// File:          kol_kontrolcu.cpp
 // Date:          15.08.2023
-// Description:   skid steer araç kontrolü
+// Description:   2 eksen kol kontrolü
 // Author:        Musa Davut SAĞLAM
 // Modifications:
 
