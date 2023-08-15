@@ -1,0 +1,112 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Asphalt.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.20159498208980495 -0.2273930214378092 0.9527076555783496 4.784313013816784
+  position -0.24242020141695486 3.417998676622516 2.0158892365977374
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 20 20
+  appearance Parquetry {
+  }
+}
+Robot {
+  translation 0.20000011548514046 0.010112846125018926 0.1451039407046274
+  rotation 0.9999999999999786 1.3863939691939194e-07 1.5460470441463587e-07 1.5700522518307254
+  children [
+    SliderJoint {
+      jointParameters JointParameters {
+        position -5.940954933927516e-08
+        minStop -0.5
+        maxStop 0.5
+      }
+      device [
+        LinearMotor {
+          name "ilk_motor"
+          minPosition -0.5
+          maxPosition 0.5
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.2 -0.04000005940954934
+        children [
+          Shape {
+            appearance Asphalt {
+            }
+            geometry Box {
+              size 1 0.1 0.1
+            }
+          }
+          SliderJoint {
+            jointParameters JointParameters {
+              position 2.138448123114924e-12
+              axis 1 0 0
+              minStop -0.5
+              maxStop 0.5
+            }
+            device [
+              LinearMotor {
+                name "ikinci_motor"
+                minPosition -0.5
+                maxPosition 0.5
+              }
+            ]
+            endPoint Solid {
+              translation 2.138448123114924e-12 0.06 0
+              children [
+                DEF kol_tabla Shape {
+                  appearance Asphalt {
+                  }
+                  geometry Box {
+                    size 0.3 0.02 0.3
+                  }
+                }
+              ]
+              boundingObject USE kol_tabla
+              physics Physics {
+              }
+              linearVelocity 7.146420899252529e-08 6.489023974347914e-06 -0.0001243072731813926
+              angularVelocity -1.5884705251923574e-05 1.7448615958477345e-07 -1.210225185783806e-10
+            }
+          }
+        ]
+        boundingObject DEF kol_yatay Shape {
+          appearance Asphalt {
+          }
+          geometry Box {
+            size 1 0.1 0.1
+          }
+        }
+        physics Physics {
+        }
+        linearVelocity 6.101617235124263e-08 5.536938161824549e-06 -0.00012036830640472464
+        angularVelocity -1.588466805758364e-05 1.7448715689756156e-07 -1.2102315340357875e-10
+      }
+    }
+    DEF sasi Shape {
+      appearance Asphalt {
+      }
+      geometry Box {
+        size 0.3 0.3 1
+      }
+    }
+  ]
+  boundingObject USE sasi
+  physics Physics {
+    density 7.85
+  }
+  controller "kol_kontrolcu"
+  linearVelocity 2.6200652100727873e-08 2.306350486658726e-06 -9.38727279124961e-05
+  angularVelocity -1.536632055951534e-05 1.7453380757784355e-07 -1.2207047950579246e-10
+}
