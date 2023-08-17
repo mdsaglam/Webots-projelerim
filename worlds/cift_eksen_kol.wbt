@@ -2,24 +2,18 @@
 
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Parquetry.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Asphalt.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
 
 WorldInfo {
 }
 Viewpoint {
   orientation -0.3271224677960418 0.03928976320583086 0.9441648190704085 2.9157640897168537
-  position 4.110374846278215 -1.2936022904098199 4.43265866468333
+  position 6.027094550941385 -1.7607440344922785 5.986183587185392
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
-}
-Floor {
-  size 20 20
-  appearance Parquetry {
-  }
 }
 Robot {
   translation 0.20000011548514046 0.010112846125018926 0.1451039407046274
@@ -103,4 +97,6 @@ Robot {
     density 7.85
   }
   controller "kol_kontrolcu"
+}
+Floor {
 }
