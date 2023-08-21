@@ -1,0 +1,120 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/GalvanizedMetal.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/ThreadMetalPlate.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  fieldOfView 1
+  orientation 0.19416729243864608 0.19171788368251863 -0.9620516179620207 1.6221415260263103
+  position 0.8838795852052941 11.154202376780923 5.42354875977097
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  tileSize 1 1
+}
+DEF KOL Robot {
+  translation 0 0 1.14
+  children [
+    DEF KOL_DIKEYDE SliderJoint {
+      jointParameters JointParameters {
+        maxStop 2
+      }
+      device [
+        LinearMotor {
+          name "DIKEY_MOTOR"
+          maxPosition 2
+        }
+      ]
+      endPoint DEF KOL_DIKEYDE Solid {
+        translation 3.74154e-06 0.382623 0.269
+        rotation 0.9999994860737339 0.0010138304927966265 -9.58974466132539e-09 -0.0026253071795858673
+        children [
+          DEF KOL_YATAYDA SliderJoint {
+            jointParameters JointParameters {
+              axis 1 0 0
+              minStop -1
+              maxStop 1
+            }
+            device [
+              DEF YATAY_MOTOR LinearMotor {
+                name "YATAY_MOTOR"
+                minPosition -1
+                maxPosition 1
+              }
+            ]
+            endPoint DEF KOL_YATAYDA Solid {
+              translation -1.224272905275825e-10 0.1800000023242624 8.971998710638474e-07
+              rotation 0.9690416945605195 0.24689625285207967 -0.0006591895622120961 1.6854736050280288e-06
+              children [
+                DEF KOL_YATAYDA Shape {
+                  appearance GalvanizedMetal {
+                  }
+                  geometry Box {
+                    size 0.75 0.1 0.75
+                  }
+                }
+              ]
+              boundingObject USE KOL_YATAYDA
+              physics Physics {
+                density 1
+              }
+            }
+          }
+          DEF KOL_DIKEYDE Shape {
+            appearance GalvanizedMetal {
+            }
+            geometry Box {
+              size 2 0.25 0.25
+            }
+          }
+        ]
+        boundingObject USE KOL_DIKEYDE
+        physics Physics {
+          density 1
+        }
+      }
+    }
+    DEF SASI Group {
+      children [
+        DEF ARKA_AYAK Pose {
+          translation 0 0 -0.89
+          children [
+            DEF ARKA_AYAK Shape {
+              appearance ThreadMetalPlate {
+              }
+              geometry Box {
+                size 5 5 0.5
+              }
+            }
+          ]
+        }
+        DEF GOVDE Pose {
+          translation 0 0 0.65
+          children [
+            DEF GOVDE Shape {
+              appearance GalvanizedMetal {
+              }
+              geometry Box {
+                size 0.5 0.5 3
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  name "KOL"
+  boundingObject USE SASI
+  physics Physics {
+    density 1
+  }
+  controller "KOL_KONTROLCU_V2"
+}
