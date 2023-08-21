@@ -10,8 +10,8 @@ WorldInfo {
 }
 Viewpoint {
   fieldOfView 1
-  orientation 0.19416729243864608 0.19171788368251863 -0.9620516179620207 1.6221415260263103
-  position 0.8838795852052941 11.154202376780923 5.42354875977097
+  orientation 0.1768005059944423 0.23475678053848487 -0.9558403815864419 1.3346423399265464
+  position -1.029454458038562 5.711670234326719 3.8373082535814516
 }
 TexturedBackground {
 }
@@ -21,7 +21,8 @@ Floor {
   tileSize 1 1
 }
 DEF KOL Robot {
-  translation 0 0 1.14
+  translation 5.5687912186625757e-11 -2.4899925982564772 1.1347209446759712
+  rotation -0.9999999999716981 7.523536553079165e-06 1.4729821694385004e-13 6.492757889621617e-06
   children [
     DEF KOL_DIKEYDE SliderJoint {
       jointParameters JointParameters {
@@ -39,6 +40,7 @@ DEF KOL Robot {
         children [
           DEF KOL_YATAYDA SliderJoint {
             jointParameters JointParameters {
+              position -5.521773333483277e-10
               axis 1 0 0
               minStop -1
               maxStop 1
@@ -51,9 +53,67 @@ DEF KOL Robot {
               }
             ]
             endPoint DEF KOL_YATAYDA Solid {
-              translation -1.224272905275825e-10 0.1800000023242624 8.971998710638474e-07
+              translation -6.746046238759102e-10 0.1800000023242624 8.971998710638474e-07
               rotation 0.9690416945605195 0.24689625285207967 -0.0006591895622120961 1.6854736050280288e-06
               children [
+                DEF TUTAMAC_SOL SliderJoint {
+                  jointParameters JointParameters {
+                    axis 0 1 0
+                    minStop -1.1
+                  }
+                  device [
+                    LinearMotor {
+                      name "TUTAMAC_SOL"
+                      minPosition -1
+                    }
+                  ]
+                  endPoint DEF TUTAMAC_SOL Solid {
+                    translation -0.33 0.51 -0.35
+                    children [
+                      DEF TUTAMAC_SOL Shape {
+                        appearance ThreadMetalPlate {
+                        }
+                        geometry Box {
+                          size 0.1 1.1 0.05
+                        }
+                      }
+                    ]
+                    name "solid(1)"
+                    boundingObject USE TUTAMAC_SOL
+                    physics Physics {
+                      density 2
+                    }
+                  }
+                }
+                DEF TUTAMAC_SAG SliderJoint {
+                  jointParameters JointParameters {
+                    axis 0 1 0
+                    minStop -1.1
+                  }
+                  device [
+                    LinearMotor {
+                      name "TUTAMAC_SAG"
+                      acceleration 10
+                      minPosition -1
+                    }
+                  ]
+                  endPoint DEF TUTAMAC_SAG Solid {
+                    translation 0.33 0.54 -0.35
+                    children [
+                      DEF TUTAMAC_SAG Shape {
+                        appearance ThreadMetalPlate {
+                        }
+                        geometry Box {
+                          size 0.1 1.1 0.05
+                        }
+                      }
+                    ]
+                    boundingObject USE TUTAMAC_SAG
+                    physics Physics {
+                      density 2
+                    }
+                  }
+                }
                 DEF KOL_YATAYDA Shape {
                   appearance GalvanizedMetal {
                   }
