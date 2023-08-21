@@ -1,0 +1,103 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Asphalt.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.2623656086573677 0.14856755490746593 -0.9534631450783329 2.1514554696356107
+  position 1.155353207839422 0.7454022977492956 2.3043294882239365
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Robot {
+  translation -0.345635 -1.09122 0.406915
+  rotation 1 1.38866e-07 1.54858e-07 1.57005
+  children [
+    SliderJoint {
+      jointParameters JointParameters {
+        position -5.940954933927516e-08
+        minStop -0.5
+        maxStop 0.5
+      }
+      device [
+        LinearMotor {
+          name "ilk_motor"
+          minPosition -0.5
+          maxPosition 0.5
+        }
+      ]
+      endPoint Solid {
+        translation -2.831068712794149e-15 0.19998173766631644 -0.040034895529351196
+        rotation -0.9999999999999962 -7.951166899068742e-08 3.379615960439851e-08 0.000100789082137094
+        children [
+          Shape {
+            appearance Asphalt {
+            }
+            geometry Box {
+              size 1 0.1 0.1
+            }
+          }
+          SliderJoint {
+            jointParameters JointParameters {
+              position 2.138448123114924e-12
+              axis 1 0 0
+              minStop -0.5
+              maxStop 0.5
+            }
+            device [
+              LinearMotor {
+                name "ikinci_motor"
+                minPosition -0.5
+                maxPosition 0.5
+              }
+            ]
+            endPoint Solid {
+              translation 2.138448123114924e-12 0.06 0
+              children [
+                DEF kol_tabla Shape {
+                  appearance Asphalt {
+                  }
+                  geometry Box {
+                    size 0.3 0.02 0.3
+                  }
+                }
+              ]
+              boundingObject USE kol_tabla
+              physics Physics {
+              }
+            }
+          }
+        ]
+        boundingObject DEF kol_yatay Shape {
+          appearance Asphalt {
+          }
+          geometry Box {
+            size 1 0.1 0.1
+          }
+        }
+        physics Physics {
+        }
+      }
+    }
+    DEF sasi Shape {
+      appearance Asphalt {
+      }
+      geometry Box {
+        size 0.3 0.3 1
+      }
+    }
+  ]
+  boundingObject USE sasi
+  physics Physics {
+    density 7.85
+  }
+  controller "kol_kontrolcu"
+}
+Floor {
+}
