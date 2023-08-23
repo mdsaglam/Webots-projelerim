@@ -10,8 +10,8 @@ WorldInfo {
 }
 Viewpoint {
   fieldOfView 1
-  orientation 0.1768005059944423 0.23475678053848487 -0.9558403815864419 1.3346423399265464
-  position -1.029454458038562 5.711670234326719 3.8373082535814516
+  orientation 0.08676176195973803 0.09612329370570508 -0.9915809140301202 1.47689095322095
+  position -0.6652035347373035 6.447334027520144 2.2052292434241147
 }
 TexturedBackground {
 }
@@ -56,6 +56,35 @@ DEF KOL Robot {
               translation -6.746046238759102e-10 0.1800000023242624 8.971998710638474e-07
               rotation 0.9690416945605195 0.24689625285207967 -0.0006591895622120961 1.6854736050280288e-06
               children [
+                DEF dikey_mesafe DistanceSensor {
+                  translation -6.16209e-14 0.00999937 -0.41
+                  rotation -0.7071067811862364 9.381857096790023e-07 0.7071067811862364 3.14159
+                  children [
+                    DEF dikey_mesafe Solid {
+                      translation -6.74634e-14 0 -2.51033e-13
+                      rotation 0 1 0 1.5708
+                      children [
+                        DEF dikey_mesafe Shape {
+                          appearance PBRAppearance {
+                            baseColor 1 1 0
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Cone {
+                            bottomRadius 0.1
+                            height 0.1
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                  name "dikey_mesafe"
+                  lookupTable [
+                    0 0 0
+                    5 1000 0
+                  ]
+                  type "laser"
+                }
                 DEF TUTAMAC_SOL SliderJoint {
                   jointParameters JointParameters {
                     axis 0 1 0

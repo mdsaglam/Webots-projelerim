@@ -14,6 +14,7 @@
 #include <chrono>
 #include <thread>
 #include <webots/Keyboard.hpp>
+#include <webots/DistanceSensor.hpp>
 #define TIME_STEP 64
 using namespace std;
 // All the webots classes are defined in the "webots" namespace
@@ -34,17 +35,19 @@ int main(int argc, char **argv)
   Motor *motor[4];
   /* kütüphane ile klavyenin tanımlanması ve kod bloğu içerisinde klavyenin tanımlanacağı fonksiyonlar için isim ataması */
   Keyboard kb;
+  DistanceSensor *dikey_mesafe = robot->getDistanceSensor("dikey_mesafe");
+  dikey_mesafe->enable(TIME_STEP);
   /* klavye girdilerinin kontrol edilmesi */
   /* BU BÖLGEDEKİ KODUN YORUM SATIRLARI KAPATILACAK OLURSA KLAVYE GİRDİLERİ KONSOLDAKİ ÇIKTIYA GÖRE DÜZENLENEBİLİR */
   //  char w = 'W'; //87
   //  char s = 'S'; //83
-char q = 'Q'; //65
+/* char q = 'Q'; //65
 char e = 'E'; //68
  cout << int(q) << endl;
  cout << int(e) << endl;
-  // cout << int(d) << endl;
-  // cout << int(a) << endl;
-/* Motorların kütüphane aracılığı ile tanıtılması*/
+  cout << int(d) << endl;
+  cout << int(a) << endl;
+Motorların kütüphane aracılığı ile tanıtılması*/
   motor[0] = robot->getMotor("DIKEY_MOTOR");
   motor[1] = robot->getMotor("YATAY_MOTOR");
   motor[2] = robot->getMotor("TUTAMAC_SAG");
@@ -60,6 +63,8 @@ char e = 'E'; //68
 /* kodun tekrarlı çalışmasını sağlayan while kodu*/
   while (robot->step(timeStep) != -1)
   {
+  double mesafe_veri = dikey_mesafe->getValue();
+  cout << mesafe_veri << endl;
 /*klavye girdisi alınması*/
     int key = kb.getKey();
     /*klavye girdilerinin kıyaslanarak hız verilerinin güncellenmesi */
@@ -102,10 +107,24 @@ char e = 'E'; //68
     motor[1]->setPosition(INFINITY);
     motor[2]->setPosition(INFINITY);
     motor[3]->setPosition(INFINITY);
-    motor[0]->setVelocity(yukariAsagiHiz);
+  //  motor[0]->setVelocity(yukariAsagiHiz);
     motor[1]->setVelocity(solSagHiz);
     motor[2]->setVelocity(ileriGeriHiz);
     motor[3]->setVelocity(ileriGeriHiz);
+    if (mesafe_veri >= 100 && mesafe_veri <= 600)
+    {
+        // Mesafe aralığı içerisindeyiz, salınımlı hareketi yap
+        double hiz = 5.0 - ((mesafe_veri - 100) / 500 * 10.0);
+        motor[0]->setPosition(INFINITY);
+        motor[0]->setVelocity(hiz);
+    }
+    else
+    {
+        // Mesafe aralığı dışındayız, durdur
+        motor[0]->setPosition(INFINITY);
+        motor[0]->setVelocity(0.0);
+    }
+
 
 
 
